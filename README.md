@@ -67,22 +67,30 @@ These commands worked for me and my IP camera:
 
 High res
 
-```./08_videoCapture rtsp://192.168.1.4:554/live/ch0```
+```
+./08_videoCapture rtsp://192.168.1.4:554/live/ch0
+```
 
 Mid res
 
-```./08_videoCapture rtsp://192.168.1.4:554/live/ch1```
+```
+./08_videoCapture rtsp://192.168.1.4:554/live/ch1
+```
 
 Low res
 
-```./08_videoCapture rtsp://192.168.1.4:554/live/ch2```
+```
+./08_videoCapture rtsp://192.168.1.4:554/live/ch2
+```
 
-
+To move the camera:
+```
 wget -q -O - --user=admin --password=pwd 'http://ipaddr/hy-cgi/ptz.cgi?cmd=preset&number=2&act=goto'
 
 wget -q -O - --user=admin --password=pwd 'http://ipaddr/hy-cgi/ptz.cgi?cmd=ptzctrl&act=left&speed=2'
 
 wget -q -O - --user=admin --password=pwd 'http://ipaddr/hy-cgi/ptz.cgi?cmd=ptzctrl&act=stop&speed=2'
+```
 
 
 PTZ can be controlled with GET
