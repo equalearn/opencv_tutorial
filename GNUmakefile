@@ -1,5 +1,7 @@
 # GNU make
 
+# all the lines in the recipe be passed to a single invocation of the shell
+.ONESHELL:
 
 bins = $(patsubst %.cpp,%,$(wildcard *.cpp))
 
@@ -15,18 +17,15 @@ I_FLAGS = $(shell pkg-config opencv --cflags)
 
 build: $(bins)
 
-fetch: INSTALLING_opencv.bash
 
-# We pick a particular version of this file off the web.
-# Test it before you make this a newer version.
-INSTALLING_opencv.bash:
-	wget\
- https://raw.githubusercontent.com/lanceman2/MirrorWorlds/0c2ce796bb01985fd15f78/INSTALLING_opencv.bash\
+fetch: INSTALL_opencv
+
+INSTALL_opencv:
+	wget --no-check-certificate\
+ https://raw.githubusercontent.com/lanceman2/small_utils/\
+5eb33d2201b979ba2a4079851104e064c59a0cc7/INSTALL_opencv\
  -O $@
-
-
-install_opencv: INSTALLING_opencv.bash
-	./INSTALLING_opencv.bash
+	chmod 755 $@
 
 $(bins): %: %.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LD_FLAGS)
@@ -36,7 +35,8 @@ $(bins): %: %.o
 
 clean:
 	rm -f *.o $(bins)
+
 # a little cleaner
 distclean cleaner: clean
-	rm -f INSTALLING_opencv.bash
+	rm -f INSTALL_opencv
 

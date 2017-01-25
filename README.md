@@ -28,30 +28,40 @@ to Windoz and GNU/Linux systems.
 
 ### Building
 
-From this directory, where this code is downloaded to, run in a bash script:
+We need to download some more files that this package uses.  You can
+do this by running (bash shell from top source directory):
+```
+make fetch
+```
+which will download (wget) INSTALL_opencv from github.
 
-  ```
-  make fetch
-  ```
 
-to wget some files from github.com.  Edit *INSTALLING_opencv.bash* to your
+#### Dependency OpenCV
+
+Edit *INSTALL_opencv* to your
 liking.  Run:
 
 
   ```
-  ./INSTALLING_opencv.bash
+  ./INSTALL_opencv
   ```
+or if your not into editing a file run:
+  ```
+  ./INSTALL_opencv --help
+  ```
+and go from there.
+
+
+#### Building the tutorial
 
 Keep editing and trying until you succeed.  If required, make
 PKG_CONFIG_PATH contain your OpenCV installation prefix with
 */lib/pkgconfig* appended, for example:
-
   ```
   export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
   ```
 
 then:
-
   ```
   make
   ```
