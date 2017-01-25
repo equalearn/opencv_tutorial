@@ -1,6 +1,6 @@
 # GNU make
 
-# all the lines in the recipe be passed to a single invocation of the shell
+# all the lines in the recipe are passed to a single invocation of the shell
 .ONESHELL:
 
 bins = $(patsubst %.cpp,%,$(wildcard *.cpp))
